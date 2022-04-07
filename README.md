@@ -1,4 +1,4 @@
-#Fitness Playlist
+# Fitness Playlist
 
 This is the repository for the Fitness Playlist application.
 
