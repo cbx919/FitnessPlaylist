@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Checkbox extends JFrame implements ActionListener{
+    JLabel label;
+    JCheckBox cB1, cB2, cB3, cB4, cB5;
+    JButton button;
+
+    // the checkbox class
+    Checkbox(){
+        label = new JLabel("Cardio Selections");  //Makes title?
+        label.setBounds(50,50,300,20); //places checkbox
+        cB1 = new JCheckBox("Swim");        //makes swim checkbox
+        cB1.setBounds(100,100,150,20); //places checkbox
+        cB2 = new JCheckBox("Run");         //makes run checkbox
+        cB2.setBounds(100,150,150,20); //places checkbox
+        cB3 = new JCheckBox("Cycling");     //makes cycling checkbox
+        cB3.setBounds(100,200,150,20); //places checkbox
+        cB4 = new JCheckBox("Walk");        //makes walk checkbox
+        cB4.setBounds(100,250,150,20);  //places checkbox
+        cB5 = new JCheckBox("Rowing");      //makes rowing checkbox
+        cB5.setBounds(100,300,150,20); //places checkbox
+
+        button = new JButton("Search");
+        button.setBounds(200,400,80,30);
+        button.addActionListener(this);
+        add(label); add(cB1); add(cB2); add(cB3);
+        add(cB4); add(cB5); add(button);
+        setSize(500,500);
+        setLayout(null);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String msg = "";
+        if(cB1.isSelected()){
+            msg = "Swimming videos";
+        }
+        if(cB2.isSelected()){
+            msg = "Running videos";
+        }
+        if(cB3.isSelected()){
+            msg = "Cycling videos";
+        }
+        if(cB4.isSelected()){
+            msg = "Walking videos";
+        }
+        if(cB5.isSelected()){
+            msg = "Rowing videos";
+        }
+        msg+="-----------------\n";
+        JOptionPane.showMessageDialog(this,msg+ " Videos: ");
+    }
+
+    public static void main(String[] args) {
+        new Checkbox();
+    }
+}
