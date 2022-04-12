@@ -1,0 +1,40 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DropDownBox {
+
+    public static void main(String[] args) {
+        String[] optionsToChoose = {"Cardio", "Arms", "Legs", "Push", "Pull"};
+        JFrame frame = new JFrame(); //Makes window
+
+        JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose); //makes drop down list
+        jComboBox.setBounds(50,70,140,20);
+
+        JButton button = new JButton("Done");
+        button.setBounds(100,100,90,20);
+
+        JLabel jLabel = new JLabel();
+        jLabel.setBounds(90,100,400,100);
+
+        frame.add(button);
+        frame.add(jComboBox);
+        frame.add(jLabel);
+
+        frame.setLayout(null);
+        frame.setSize(350,250);
+        frame.setVisible(true);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedWorkout = "You selected " + jComboBox.getItemAt(jComboBox.getSelectedIndex());
+                jLabel.setText(selectedWorkout);
+            }
+        });
+
+
+    }
+
+
+}
