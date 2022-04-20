@@ -1,6 +1,11 @@
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+/**
+ * YTjson is a class written to hold all of the youtube json variables that are parsed from gson
+ * This class contains multiple subclasses in order to be a container for the multi layered JSON response from youtube
+ * The @SerializedName tags are the identifiers that correspond to json fields for gson to find when parsing
+ */
 public class YTjson{
 
 	@SerializedName("regionCode")

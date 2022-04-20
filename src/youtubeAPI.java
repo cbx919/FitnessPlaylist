@@ -1,41 +1,46 @@
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import javax.net.ssl.HttpsURLConnection;
+
+import com.google.gson.*;
+
 
 /**
  * A youtube API querying class
- * Querys youtube API and receives request, parses json and returns relevant items
+ * Queries youtube API and receives request, parses json and returns relevant items
  */
 
 public class youtubeAPI {
     private final String API_KEY;
     private final String API_URL;
+    private final String ytWatchURL;
     private String fullURL;
+
 
 
    public youtubeAPI(){
        this.API_KEY = "AIzaSyDTn6-P20k3Pc2ECngAm1oZ8Q7UWDh6ZZg";
        this.API_URL = "https://www.googleapis.com/youtube/v3";
+       this.ytWatchURL = "https://www.youtube.com/watch?v=";
+
    }
 
     /**
      *
-     * @param numberOfVideos The number of videos to be returned in a search
      * @param query The search query of the videos
-     * TODO - Create full routine after getting urlConn routine working
+     *
      */
-   public String videoSearch(int numberOfVideos, String query){
-        //Need to create after the getting the https URL connection and the JSON parser working
-    return "null";
+   public String videoSearch(String query){
+       if (query.contains(" ")){
+           query = query.replace(" ", "+");
+       }
+
+       this.urlFormer("search", new String[]{query});
+
+       return ytWatchURL + (String) gsonUrlConn();
    }
 
 
@@ -44,11 +49,12 @@ public class youtubeAPI {
      * @param queryType The type of query - See youtube API docs for query types Ex. search
      * @param queries The web queries to be added to the URL
      * @return The full URL in string form
-     * TODO - Integrate this with urlConn routine
+     *
      */
-    private String UrlFormer(String queryType, String[] queries) {
 
-        String relativeURL = "/" + queryType + "?" + "key=" + this.API_KEY + "&";
+    private void urlFormer(String queryType, String[] queries) {
+
+        String relativeURL = "/" + queryType + "?" + "key=" + this.API_KEY + "&" + "q=";
         for (int i = 0; i < queries.length; i++) {
 
             relativeURL =  relativeURL.concat(queries[i]);
@@ -57,56 +63,41 @@ public class youtubeAPI {
             }
         }
 
-        return this.fullURL = fullURL.concat(relativeURL);
+        this.fullURL = API_URL.concat(relativeURL);
 
     }
 
     /**
-     * WIP HTTPs connection and inputstream parser to JSON object
-     * The web request works
-     * TODO - figure out why this throws a parse exception
+     * HTTP connection and inputstream parser to JSON object
+     * Takes the JSON from an inputstream from youtube and parses into an instance of the YTjson class
      * @return Parsed JSON object
      *
      */
-    public Object urlConn(){
-        JSONObject testWebContent;
-       try {
-           URL testUrl = new URL("https://www.googleapis.com/youtube/v3/search?key=AIzaSyDTn6-P20k3Pc2ECngAm1oZ8Q7UWDh6ZZg&type=video&q=triceps+workout&part=snippet");
+    private Object gsonUrlConn(){
+        String x = null;
+        try {
+            URL testUrl = new URL(fullURL);
+            URLConnection urlConnection = (HttpsURLConnection)testUrl.openConnection();
+            InputStream stream = urlConnection.getInputStream();
+            InputStreamReader reader = new InputStreamReader(stream, "UTF-8");
 
-            try {
-               HttpsURLConnection urlConnection = (HttpsURLConnection)testUrl.openConnection();
-               InputStream stream = urlConnection.getInputStream();
-               InputStreamReader reader = new InputStreamReader(stream, "UTF-8");
-               JSONParser parser = new JSONParser();
-               try {
-                   testWebContent = (JSONObject) parser.parse(reader);
+            YTjson jsonObject = new Gson().fromJson(reader, YTjson.class);
 
-               }
-               catch (ParseException pe){
-                   return "ParseException";
-               }
-               //InputStreamReader reader = new InputStreamReader(urlConnection.getInputStream());
-                // testWebContent = reader.read();
+            x = jsonObject.getItems().get(0).getId().getVideoId();
 
-
-            }
-            catch(IOException f){
-               return "IOexception";
-           }
-       }
-       catch(MalformedURLException e){
-           return "Malformed URL";
         }
-       
-        return testWebContent;
-
+        catch (Exception e){
+            return e;
+        }
+        return x;
     }
+
 
 }
 
 
 /*
- ****** Notes on url querys *********
+ ****** Notes on url queries *********
  * Base url for api is necessary plus api key
  *
  * Any additional method calls or parameters that are sent come after a "?"
