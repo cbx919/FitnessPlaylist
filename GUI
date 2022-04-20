@@ -1,0 +1,87 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class GUI {
+
+    private JFrame frame, frame2;
+    String[] optionsToChoose = {"Cardio", "Arms", "Legs", "Push", "Pull"};
+    JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose); //makes drop down list
+    JLabel label; // label for
+    JCheckBox cB1, cB2, cB3, cB4, cB5; //makes checkboxes for frame 2
+    JButton btnSearch = new JButton("Search"); //search button for when we add the links
+
+
+
+
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        GUI window = new GUI();
+        window.frame.setVisible(true);
+    }
+
+    /**
+     * Create the application.
+     */
+    public GUI() {
+        jComboBox.setBounds(150, 70, 140, 20);
+
+
+        label = new JLabel("Selections");  //Makes title?
+        label.setBounds(50,50,300,20); //places checkbox
+        cB1 = new JCheckBox("Swim");        //makes swim checkbox
+        cB1.setBounds(100,100,150,20); //places checkbox
+        cB2 = new JCheckBox("Run");         //makes run checkbox
+        cB2.setBounds(100,150,150,20); //places checkbox
+        cB3 = new JCheckBox("Cycling");     //makes cycling checkbox
+        cB3.setBounds(100,200,150,20); //places checkbox
+        cB4 = new JCheckBox("Walk");        //makes walk checkbox
+        cB4.setBounds(100,250,150,20);  //places checkbox
+        cB5 = new JCheckBox("Rowing");      //makes rowing checkbox
+        cB5.setBounds(100,300,150,20); //places checkbox
+        btnSearch.setBounds(250, 200, 120, 23); //places search button
+
+
+
+        initialize();
+
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame = new JFrame(); //makes first frame
+        frame.setBounds(100, 100, 650, 600); // makes size of frame and where it opens
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        frame.add(jComboBox);
+
+
+
+        frame2 = new JFrame();  //makes second frame
+        frame2.setBounds(100, 100, 650, 600); //sets size and postion
+        frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //tells what to do when frame is closed
+        frame2.getContentPane().setLayout(null);
+        frame2.add(cB1);frame2.add(cB2);frame2.add(cB3);frame2.add(cB4);frame2.add(cB5);
+        frame2.add(btnSearch);
+        frame2.add(label);
+
+
+        JButton btnOpenWindow = new JButton("Next");
+        btnOpenWindow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                frame2.setVisible(true);
+            }
+        });
+        btnOpenWindow.setBounds(167, 118, 120, 23);
+        frame.getContentPane().add(btnOpenWindow);
+
+
+    }
+}
