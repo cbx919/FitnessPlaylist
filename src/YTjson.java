@@ -26,30 +26,47 @@ public class YTjson{
 	@SerializedName("items")
 	private List<ItemsItem> items;
 
+	/**
+	 * @return Region Code
+	 */
 	public String getRegionCode(){
 		return regionCode;
 	}
 
+	/**
+	 * @return Kind
+	 */
 	public String getKind(){
 		return kind;
 	}
 
+	/**
+	 * @return Next page token
+	 */
 	public String getNextPageToken(){
 		return nextPageToken;
 	}
 
+	/**
+	 * @return Page Info
+	 */
 	public PageInfo getPageInfo(){
 		return pageInfo;
 	}
 
+	/**
+	 * @return Etag
+	 */
 	public String getEtag(){
 		return etag;
 	}
 
+	/**
+	 * @return Items List
+	 */
 	public List<ItemsItem> getItems(){
 		return items;
 	}
-
 
 	public class Id{
 
@@ -59,10 +76,16 @@ public class YTjson{
 		@SerializedName("videoId")
 		private String videoId;
 
+		/**
+		 * @return Kind
+		 */
 		public String getKind(){
 			return kind;
 		}
 
+		/**
+		 * @return he video ID
+		 */
 		public String getVideoId(){
 			return videoId;
 		}
@@ -82,23 +105,35 @@ public class YTjson{
 		@SerializedName("id")
 		private Id id;
 
+		/**
+		 * @return The video snippet
+		 */
 		public Snippet getSnippet(){
 			return snippet;
 		}
 
+		/**
+		 * @return Kind
+		 */
 		public String getKind(){
 			return kind;
 		}
 
+		/**
+		 * @return The Etag
+		 */
 		public String getEtag(){
 			return etag;
 		}
 
+		/**
+		 * @return The ID
+		 */
 		public Id getId(){
 			return id;
 		}
 	}
-
+	
 	public class JsonMemberDefault{
 
 		@SerializedName("width")
@@ -110,14 +145,23 @@ public class YTjson{
 		@SerializedName("height")
 		private int height;
 
+		/**
+		 * @return The thumbnail width
+		 */
 		public int getWidth(){
 			return width;
 		}
 
+		/**
+		 * @return The thumbnail URL
+		 */
 		public String getUrl(){
 			return url;
 		}
 
+		/**
+		 * @return The thumbnail height
+		 */
 		public int getHeight(){
 			return height;
 		}
@@ -134,14 +178,21 @@ public class YTjson{
 		@SerializedName("height")
 		private int height;
 
+		/**
+		 * @return The thumbnail width
+		 */
 		public int getWidth(){
 			return width;
 		}
-
+		/**
+		 * @return The thumbnail URL
+		 */
 		public String getUrl(){
 			return url;
 		}
-
+		/**
+		 * @return The thumbnail height
+		 */
 		public int getHeight(){
 			return height;
 		}
@@ -157,15 +208,21 @@ public class YTjson{
 
 		@SerializedName("height")
 		private int height;
-
+		/**
+		 * @return The thumbnail width
+		 */
 		public int getWidth(){
 			return width;
 		}
-
+		/**
+		 * @return The thumbnail URL
+		 */
 		public String getUrl(){
 			return url;
 		}
-
+		/**
+		 * @return The thumbnail height
+		 */
 		public int getHeight(){
 			return height;
 		}
@@ -197,34 +254,51 @@ public class YTjson{
 		@SerializedName("liveBroadcastContent")
 		private String liveBroadcastContent;
 
+		/**
+		 * @return The publish time
+		 */
 		public String getPublishTime(){
 			return publishTime;
 		}
-
+		/**
+		 * @return Published at
+		 */
 		public String getPublishedAt(){
 			return publishedAt;
 		}
-
+		/**
+		 * @return The description
+		 */
 		public String getDescription(){
 			return description;
 		}
-
+		/**
+		 * @return The title
+		 */
 		public String getTitle(){
 			return title;
 		}
-
+		/**
+		 * @return Thumbnails
+		 */
 		public Thumbnails getThumbnails(){
 			return thumbnails;
 		}
-
+		/**
+		 * @return The channel ID
+		 */
 		public String getChannelId(){
 			return channelId;
 		}
-
+		/**
+		 * @return The channel title
+		 */
 		public String getChannelTitle(){
 			return channelTitle;
 		}
-
+		/**
+		 * @return the Live Broadcast Content
+		 */
 		public String getLiveBroadcastContent(){
 			return liveBroadcastContent;
 		}
@@ -241,14 +315,21 @@ public class YTjson{
 		@SerializedName("medium")
 		private Medium medium;
 
+		/**
+		 * @return Default thumbnail quality class
+		 */
 		public JsonMemberDefault getJsonMemberDefault(){
 			return jsonMemberDefault;
 		}
-
+		/**
+		 * @return High thumbnail quality class
+		 */
 		public High getHigh(){
 			return high;
 		}
-
+		/**
+		 * @return Medium thumbnail quality class
+		 */
 		public Medium getMedium(){
 			return medium;
 		}
@@ -261,11 +342,15 @@ public class YTjson{
 
 		@SerializedName("resultsPerPage")
 		private int resultsPerPage;
-
+		/**
+		 * @return Total results
+		 */
 		public int getTotalResults(){
 			return totalResults;
 		}
-
+		/**
+		 * @return Results per page
+		 */
 		public int getResultsPerPage(){
 			return resultsPerPage;
 		}

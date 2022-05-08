@@ -19,7 +19,10 @@ public class youtubeAPI {
     private final String ytWatchURL;
     private String fullURL;
 
-
+    /**
+     * youtubeAPI constructor
+     *
+     */
 
    public youtubeAPI(){
        this.API_KEY = "AIzaSyDTn6-P20k3Pc2ECngAm1oZ8Q7UWDh6ZZg";
@@ -29,9 +32,9 @@ public class youtubeAPI {
    }
 
     /**
-     *
+     * Method to form API queries and call the y
      * @param query The search query of the videos
-     *
+     * @return youtube video link in a String
      */
    public String videoSearch(String query){
        if (query.contains(" ")){
